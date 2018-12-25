@@ -1,0 +1,4 @@
+.project
+*swp
+build/
+node_modules/
