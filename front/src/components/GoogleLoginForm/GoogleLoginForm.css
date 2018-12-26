@@ -1,0 +1,23 @@
+.login-btn {
+  display: inline-block;
+  background: rgb(209, 72, 54) none repeat scroll 0% 0%;
+  color: rgb(255, 255, 255);
+  height: 50px;
+  padding: 1rem 1.6rem 1rem 4rem;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-family: Poppins;
+  position: relative;
+  text-transform: uppercase;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.icon-google-btn {
+  position: absolute;
+  font-size: 1.8em;
+  left: 1rem;
+  top: 1rem;
+}
