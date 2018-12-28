@@ -12,8 +12,7 @@ const GoogleLoginForm = ({ clientId, onSuccess }) => (
     onSuccess={onSuccess}
     isSignedIn
     prompt="consent"
-  >
-  </GoogleLogin>
+  />
 );
 
 GoogleLoginForm.propTypes = {

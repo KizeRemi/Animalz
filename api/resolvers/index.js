@@ -1,6 +1,6 @@
 import { merge } from 'lodash';
-import HelloResolver from './hello';
+import userResolver from './user';
 
 module.exports = merge(
-  HelloResolver
+  userResolver
 );

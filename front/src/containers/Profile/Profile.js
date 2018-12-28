@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 
-class Home extends Component {
+class Profile extends Component {
   render() {
     return (
-      <div>HOME</div>
+      <div>PROFIL</div>
     );
   }
 }
 
-export default Home;
+export default Profile;

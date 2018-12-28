@@ -20,7 +20,7 @@ const stateLink = withClientState({
 });
 
 const httpLink = createHttpLink({
-  uri: process.env.REACT_APP_ENDPOINT_VEOLIA,
+  uri: process.env.REACT_APP_ENDPOINT_POKESHINE,
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -29,7 +29,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      Authorization: token ? `${token}` : '',
+      authorization: token ? `${token}` : '',
     },
   };
 });

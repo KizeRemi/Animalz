@@ -10,6 +10,7 @@ import {
 const PrivateRouter = () => (
   <Switch>
     <Route path={ROUTE_HOME} component={Home} />
+    <Route path={ROUTE_HOME} component={Home} />
     <Redirect to={ROUTE_HOME} />
   </Switch>
 );

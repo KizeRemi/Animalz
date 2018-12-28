@@ -1,39 +1,20 @@
 import React, { Component } from 'react';
+import { FaGoogle } from 'react-icons/fa';
 
-import { GoogleLoginForm } from '../../components/GoogleLoginForm';
+import Authentication from './Authentication';
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { googleUser: null };
-  }
-
-  onGoogleConnectionSuccess = (response) => {
-    this.setState({ googleUser: response });
-    localStorage.setItem('accessToken', response.tokenObj.access_token);
-    this.setRefreshTimeout(response.tokenObj.expires_at);
-  };
-
-  setRefreshTimeout = (expiresAt) => {
-    setTimeout(this.reloadAuthToken, 5000);
-  }
-
-  reloadAuthToken = async () => {
-    const response = await this.state.googleUser.reloadAuthResponse()
-      .catch((err) => {
-        localStorage.removeItem('accessToken');
-      });
-
-    localStorage.setItem('accessToken', response.access_token);
-    this.setRefreshTimeout(response.expires_at);
-  }
 
   render() {
     return (
-      <GoogleLoginForm
-        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-        onSuccess={this.onGoogleConnectionSuccess}
-      />
+      <Authentication>
+        {({ loading, onClick }) => (
+          <button className="login-btn" type="button" onClick={onClick}>
+            <FaGoogle size="1.2em" color="#FFFFFF" className="icon-google" />
+            <span>{loading ? "Loading" : "Login with google"}</span>
+          </button>
+        )}
+      </Authentication>
     );
   }
 }

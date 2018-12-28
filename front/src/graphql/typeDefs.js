@@ -6,7 +6,7 @@ export const typeDefs = `
   }
 
   type App {
-    setToken: String 
+    token: String 
   }
 
   type Notification {
@@ -18,7 +18,7 @@ export const typeDefs = `
   type Mutation {
     newNotification(input: NotificationInput!): Notification
     deleteNotification(): Notification
-    setToken(token: String): App
+    logIn(token: String): App
   }
 
   type Query {

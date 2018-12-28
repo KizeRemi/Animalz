@@ -19,9 +19,9 @@ services:
   postgres:
     image: postgres:9-alpine
     environment:
-      - POSTGRES_USER=veolia
-      - POSTGRES_PASSWORD=veolia
-      - POSTGRES_DB=veolia_mr
+      - POSTGRES_USER=pokeshine
+      - POSTGRES_PASSWORD=pokeshine
+      - POSTGRES_DB=pokeshine_db
     ports:
       - $PG_PORT:5432
 

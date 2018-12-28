@@ -14,7 +14,20 @@ export const resolvers = {
 
       return true;
     },
+    logIn: (_, { token }, { cache }) => {
+      cache.writeData({
+        data: { App: { __typename: 'App', token } },
+      });
+
+      return true;
+    },
     setToken: (_, { token }, { cache }) => {
+      if (token) {
+        localStorage.setItem('accessToken', token);
+      } else {
+        localStorage.removeItem('accessToken');
+      }
+
       cache.writeData({
         data: { App: { __typename: 'App', token } },
       });

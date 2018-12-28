@@ -1,0 +1,38 @@
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 50px;
+    padding: 0px 1rem;
+    border-bottom: 1px solid black;
+}
+
+.menu-container {
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-container > a {
+    margin: 0 1rem;
+}
+
+.active {
+    color: gray; 
+}
+
+.login-btn {
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    padding: 0.5rem;
+    background-color: #d14836;
+    border: none;
+}
+
+.login-btn > span {
+    flex: 1;
+}

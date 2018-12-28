@@ -7,6 +7,9 @@ import client from './graphql/client';
 import { fr } from './i18n';
 import { AppLayout } from './containers/AppLayout';
 
+import './normalize.css';
+import './App.css';
+
 const App = () => (
   <IntlProvider locale="fr" messages={fr}>
     <ApolloProvider client={client}>
