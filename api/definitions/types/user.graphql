@@ -1,11 +1,12 @@
 type Query {
   getUser: User
   getCurrentUser: User
-    logIn: User
+  getTest: String
 }
 
 type User {
   id: String!,
   email: String!
   username: String!
+  picture: String
 }

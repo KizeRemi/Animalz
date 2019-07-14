@@ -1,4 +1,5 @@
 import uuid from 'uuid';
+import util from 'util';
 import knex from '../database';
 
 export const getUserById = (id) => {
@@ -23,6 +24,18 @@ export const checkUserByEmail = (email) => {
     .from('user')
     .where('email', email)
     .first();
+};
+
+export const upsertUser = (user) => {
+  const insert = knex.insert(user).into('user');
+  const update = knex.from('user').update(user).returning('*');
+  const query = util.format(
+    '%s ON CONFLICT (email) DO UPDATE SET %s',
+    insert.toString(),
+    update.toString().replace(/^update\s.*\sset\s/i, '')
+  );
+
+  return knex.raw(query);
 };
 
 export const createUser = (email, username) => {

@@ -9,7 +9,7 @@ class Login extends Component {
     return (
       <Authentication>
         {({ loading, onClick }) => (
-          <button className="login-btn" type="button" onClick={onClick}>
+          <button disabled className="login-btn" type="button" onClick={onClick}>
             <FaGoogle size="1.2em" color="#FFFFFF" className="icon-google" />
             <span>{loading ? "Loading" : "Login with google"}</span>
           </button>

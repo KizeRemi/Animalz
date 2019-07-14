@@ -1,7 +1,7 @@
 export const defaults = {
   App: {
     __typename: 'App',
-    token: null,
+    token: localStorage.getItem('accessToken') || null,
   },
   Notification: null,
 };

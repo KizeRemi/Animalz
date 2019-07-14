@@ -1,25 +1,32 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import jwt from 'jsonwebtoken';
 
-import { getGoogleUser } from './services/authentication';
-import { checkUserByEmail } from './repository/UserRepository';
 import resolvers from './resolvers';
 import Knex from './database';
 import typeDefs from './definitions/typeDefs';
- 
+import { checkUserByEmail } from './repository/UserRepository';
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: async ({ req }) => {
-    const accessToken = req.headers.authorization || '';
-    const { data } = await getGoogleUser(accessToken);
-    const user = await checkUserByEmail(data.email);
-    if (user) {
-      data.isRegistered = user.id;
+  context: async ({ req, res }) => {
+    const token = req.headers['authorization'] || null;
+    let user = null;
+    if (token) {
+      user = await jwt.verify(token, 'secret', (err, user) => {
+        if (err) {
+          console.log(err);
+        } else {
+          return checkUserByEmail(user.email);
+        }
+      });
+    } else {
+      console.log('pas de token')
     }
-  
-    return { postgres: Knex, user: data };
-  }
+    console.log(user)
+    return { req, res, user };
+  },
 });
  
 const app = express();

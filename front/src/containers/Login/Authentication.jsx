@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { Query, Mutation } from 'react-apollo';
+import { func, bool, node } from 'prop-types';
 import { GoogleLogin } from 'react-google-login';
 
-import { LOGIN } from '../../graphql/queries/user';
+import { GET_CURRENT_USER } from '../../graphql/queries/user';
 import { SET_TOKEN } from '../../graphql/mutations/app';
 
 class Authentication extends Component {
+  static propTypes = {
+    isSignedIn: bool,
+    onAuthCompleted: func,
+    children: node.isRequired,
+  }
+
   static defaultProps = {
     isSignedIn: false,
     onAuthCompleted: () => {},
@@ -21,7 +28,6 @@ class Authentication extends Component {
     localStorage.setItem('accessToken', response.tokenObj.access_token);
     this.setRefreshTimeout(response.tokenObj.expires_at);
   };
-
 
   setRefreshTimeout = () => {
     setTimeout(this.reloadAuthToken, 350000);
@@ -53,22 +59,18 @@ class Authentication extends Component {
 
               return (
                 <Query
-                  query={LOGIN}
+                  query={GET_CURRENT_USER}
                   skip={!this.state.googleUser}
                   fetchPolicy="network-only"
                   onCompleted={() => setToken({ variables: { token: googleUser.tokenObj.access_token } })}
                 >
-                  {({ loading }) => {
-
-                    return children({ loading, onClick });
-                  }}
+                  {({ loading }) => children({ loading, onClick })}
                 </Query>
               );
             }}
           </Mutation>
         )}
-      >
-      </GoogleLogin>
+      />
     );
   }
 }

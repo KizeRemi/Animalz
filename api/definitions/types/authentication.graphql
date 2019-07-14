@@ -1,0 +1,9 @@
+type Query {
+  loginFacebook(token: String!): UserToken
+}
+
+type UserToken {
+  token: String
+  message: String!
+  success: Boolean!
+}

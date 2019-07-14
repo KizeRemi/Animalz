@@ -11,6 +11,8 @@ services:
       - $API_PORT:4000
     environment:
       - PG_URL=$PG_URL
+      - FACEBOOK_APP_ID=$FACEBOOK_APP_ID
+      - FACEBOOK_SECRET_ID=$FACEBOOK_SECRET_ID
     depends_on:
       - postgres
     links:
